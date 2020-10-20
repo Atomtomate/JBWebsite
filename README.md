@@ -1,3 +1,6 @@
+This is a fork of Gatsby's blog starter. 
+For reference the original README is given here.
+
 <!-- AUTO-GENERATED-CONTENT:START (STARTER) -->
 <p align="center">
   <a href="https://www.gatsbyjs.com">
