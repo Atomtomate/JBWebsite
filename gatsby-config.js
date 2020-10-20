@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: `Julians Bastelecke`,
     author: {
       name: `Julian Stobbe`,
-      summary: `some guy`
+      summary: `some guy`,
     },
-       
+
     description: `Blog template for future use. This may be forked for personal blogs.`,
     siteUrl: `http://78.46.228.140`,
     social: {
@@ -49,8 +49,8 @@ module.exports = {
           {
             resolve: `gatsby-remark-katex`,
             options: {
-              strict: `ignore`
-            }
+              strict: `ignore`,
+            },
           },
         ],
       },
@@ -67,7 +67,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
+        name: `Julians Bastelecke`,
         short_name: `GatsbyJS`,
         start_url: `/`,
         background_color: `#ffffff`,
@@ -81,4 +81,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
   ],
-}
+};
