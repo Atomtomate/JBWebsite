@@ -52,6 +52,16 @@ module.exports = {
               strict: `ignore`,
             },
           },
+          {
+          resolve: `gatsby-source-git`,
+          options: {
+            name: `repo-source-git`,
+            remote: `https://github.com/Atomtomate/SeriesAcceleration`,
+            branch: `main`,
+            // Only import the docs folder from a codebase.
+            patterns: `docs/**`
+          }
+        },
         ],
       },
     },

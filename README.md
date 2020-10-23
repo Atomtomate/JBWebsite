@@ -1,3 +1,8 @@
+# Overview
+This is a fork of Gatsby's blog starter. 
+For reference the original README is given here.
+
+## Changes to fork
 This is a fork of Gatsby's blog starter. 
 For reference the original README is given here.
 
