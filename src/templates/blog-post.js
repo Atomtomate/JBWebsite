@@ -5,7 +5,7 @@ import Bio from "../components/bio"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
-require(`katex/dist/katex.min.css`)
+require(`katex/dist/katex.css`)
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
