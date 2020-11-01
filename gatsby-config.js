@@ -52,16 +52,28 @@ module.exports = {
               strict: `ignore`,
             },
           },
+          `gatsby-remark-source-name`,
+
           {
           resolve: `gatsby-source-git`,
-          options: {
-            name: `repo-source-git`,
-            remote: `https://github.com/Atomtomate/SeriesAcceleration`,
-            branch: `main`,
-            // Only import the docs folder from a codebase.
-            patterns: `docs/**`
-          }
-        },
+            options: {
+              name: `Series Acceleration`,
+              remote: `https://github.com/Atomtomate/SeriesAcceleration`,
+              branch: `main`,
+              // Only import the docs folder from a codebase.
+              patterns: `docs/Article_**`
+            }
+          },
+          {
+            resolve: `gatsby-source-git`,
+            options: {
+              name: `Julia Tutorial`,
+              remote: `https://github.com/Atomtomate/JuliaTutorial`,
+              branch: `main`,
+              // Only import the docs folder from a codebase.
+              patterns: `docs/Article_**`
+            }
+          },
         ],
       },
     },

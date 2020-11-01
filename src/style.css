@@ -1,5 +1,13 @@
 /* CSS Custom Properties Definitions */
 
+.red{
+  background:#f00;
+}
+.box{
+  width:100px;
+  height:100px;
+}
+
 :root {
   --maxWidth-none: "none";
   --maxWidth-xs: 20rem;
@@ -54,11 +62,11 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
+  --color-primary: #067324;
   --color-text: #2e353f;
   --color-text-light: #4f5969;
-  --color-heading: #1a202c;
-  --color-heading-black: black;
+  --color-heading: #0b3975;
+  --color-heading-black: #003006;
   --color-accent: #d1dce5;
 }
 

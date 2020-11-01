@@ -25,11 +25,11 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <SEO title="All posts" />
+      <SEO title="All posts by date" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
-          const title = post.frontmatter.title || post.fields.slug
+          const title = (post.fields.sourceName + `: `) +  (post.frontmatter.title || post.fields.slug)
 
           return (
             <li key={post.fields.slug}>
@@ -82,6 +82,10 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+        }
+        fields {
+          slug
+          sourceName
         }
       }
     }
