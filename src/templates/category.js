@@ -7,7 +7,7 @@ import SEO from "../components/seo";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 
-const Category = ({ pageContext, data }) => {
+const Category = ({ pageContext, data, location }) => {
     const { category } = pageContext
     const { edges, totalCount } = data.allMarkdownRemark
     const categoryHeader = `${totalCount} post${

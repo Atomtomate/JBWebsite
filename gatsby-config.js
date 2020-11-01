@@ -6,7 +6,7 @@ module.exports = {
       summary: `some guy`,
     },
 
-    description: `Blog template for future use. This may be forked for personal blogs.`,
+    description: `Algorithms and stuff.`,
     siteUrl: `http://78.46.228.140`,
     social: {
       twitter: ``,
@@ -101,6 +101,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };

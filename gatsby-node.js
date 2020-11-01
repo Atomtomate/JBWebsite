@@ -10,8 +10,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   const categoryTemplate = path.resolve("src/templates/category.js")
 
   // Get all markdown blog posts sorted by date
-  const result = await graphql(
-    `
+  const result = await graphql(`
       {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
@@ -19,9 +18,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         ) {
           nodes {
             id
-            fields {
-              slug
-            }
             frontmatter {
               categories
               title
@@ -58,7 +54,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     // Create post detail pages
     posts.forEach(post => {
       createPage({
-        path: post.fields.slug,
+        path: post.frontmatter.slug,
         component: blogPost,
         context: {
           id: post.id,
@@ -67,7 +63,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
     const categories = result.data.categoriesGroup.group
 
-    // Make tag pages
+    // Make Topic pages
     categories.forEach(category => {
       createPage({
         path: `/categories/${_.kebabCase(category.fieldValue)}/`,
@@ -121,16 +117,12 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
-      fields: Fields
     }
 
     type Frontmatter {
       title: String
       description: String
       date: Date @dateformat
-    }
-
-    type Fields {
       slug: String
     }
   `)
