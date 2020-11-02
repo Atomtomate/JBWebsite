@@ -6,7 +6,7 @@ module.exports = {
       summary: `some guy`,
     },
 
-    description: `Blog template for future use. This may be forked for personal blogs.`,
+    description: `Algorithms and stuff.`,
     siteUrl: `http://78.46.228.140`,
     social: {
       twitter: ``,
@@ -52,16 +52,28 @@ module.exports = {
               strict: `ignore`,
             },
           },
+          `gatsby-remark-source-name`,
+
           {
           resolve: `gatsby-source-git`,
-          options: {
-            name: `repo-source-git`,
-            remote: `https://github.com/Atomtomate/SeriesAcceleration`,
-            branch: `main`,
-            // Only import the docs folder from a codebase.
-            patterns: `docs/**`
-          }
-        },
+            options: {
+              name: `Series Acceleration`,
+              remote: `https://github.com/Atomtomate/SeriesAcceleration`,
+              branch: `main`,
+              // Only import the docs folder from a codebase.
+              patterns: `docs/Article_**`
+            }
+          },
+          {
+            resolve: `gatsby-source-git`,
+            options: {
+              name: `Julia Tutorial`,
+              remote: `https://github.com/Atomtomate/JuliaTutorial`,
+              branch: `main`,
+              // Only import the docs folder from a codebase.
+              patterns: `docs/Article_**`
+            }
+          },
         ],
       },
     },
@@ -89,6 +101,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 };

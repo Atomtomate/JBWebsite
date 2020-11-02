@@ -1,4 +1,5 @@
 const path = require(`path`)
+const _ = require("lodash")
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -6,26 +7,34 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   // Define a template for blog post
   const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const categoryTemplate = path.resolve("src/templates/category.js")
 
   // Get all markdown blog posts sorted by date
-  const result = await graphql(
-    `
+  const result = await graphql(`
       {
         allMarkdownRemark(
-          sort: { fields: [frontmatter___date], order: ASC }
+          sort: { order: DESC, fields: [frontmatter___date] }
           limit: 1000
         ) {
           nodes {
             id
-            fields {
+            frontmatter {
+              categories
+              title
+              date
               slug
             }
           }
         }
+        categoriesGroup: allMarkdownRemark(limit: 2000) {
+          group(field: frontmatter___categories) {
+            fieldValue
+          }
+        }
       }
-    `
-  )
+    `)
 
+  // handle errors
   if (result.errors) {
     reporter.panicOnBuild(
       `There was an error loading your blog posts`,
@@ -35,23 +44,32 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
   const posts = result.data.allMarkdownRemark.nodes
+  //const posts = result.data.allMarkdownRemark.edges
 
   // Create blog posts pages
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-
+    // Create post detail pages
+    posts.forEach(post => {
       createPage({
-        path: post.fields.slug,
+        path: post.frontmatter.slug,
         component: blogPost,
         context: {
           id: post.id,
-          previousPostId,
-          nextPostId,
+        },
+      })
+    })
+    const categories = result.data.categoriesGroup.group
+
+    // Make Topic pages
+    categories.forEach(category => {
+      createPage({
+        path: `/categories/${_.kebabCase(category.fieldValue)}/`,
+        component: categoryTemplate,
+        context: {
+          tag: category.fieldValue,
         },
       })
     })
@@ -99,16 +117,12 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type MarkdownRemark implements Node {
       frontmatter: Frontmatter
-      fields: Fields
     }
 
     type Frontmatter {
       title: String
       description: String
       date: Date @dateformat
-    }
-
-    type Fields {
       slug: String
     }
   `)
